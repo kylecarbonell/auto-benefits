@@ -1,0 +1,16 @@
+# Environment files
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Convex local/dev artifacts
+.convex/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
