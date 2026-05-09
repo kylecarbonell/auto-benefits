@@ -2,15 +2,17 @@ import { defineSchema, defineTable } from "convex/server";
 import { v } from "convex/values";
 
 const users = defineTable({
+  clerkId: v.string(),
   name: v.string(),
   email: v.string(),
-}).index("by_email", ["email"]);
+}).index("by_email", ["email"]).index("by_clerkId", ["clerkId"]);
+
 
 const profiles = defineTable({
   userId: v.id("users"),
 
-  state: v.string(),
-  householdSize: v.number(),
+  state: v.optional(v.string()),
+  householdSize: v.optional(v.number()),
 
   // Store normalized income separately from the UI label.
   monthlyIncomeMin: v.optional(v.number()),
@@ -28,9 +30,6 @@ const profiles = defineTable({
   disabilityStatus: v.optional(v.boolean()),
   veteranStatus: v.optional(v.boolean()),
   studentStatus: v.optional(v.boolean()),
-
-  createdAt: v.number(),
-  updatedAt: v.number(),
 }).index("by_user", ["userId"]);
 
 const benefits = defineTable({
